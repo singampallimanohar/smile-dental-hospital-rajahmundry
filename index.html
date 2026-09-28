@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile Dental Hospital & Implant Center</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables based on the provided theme */
+        :root {
+            --primary: #154235; /* Dark Green */
+            --accent: #26b38c; /* Mint Green */
+            --accent-hover: #1f9473;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --text-gray: #7a7a7a;
+            --bg-light: #f9fbfb;
+            --bg-white: #ffffff;
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* 3D and Animation Utilities */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        nav {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        .logo i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        .btn-contact {
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .btn-contact:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 5rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+        }
+        .hero-title {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .hero-title span {
+            color: var(--accent);
+        }
+        .hero-text {
+            font-size: 1rem;
+            color: #d1deda;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            border-color: var(--text-light);
+            background-color: rgba(255,255,255,0.05);
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .avatars {
+            display: flex;
+        }
+        .avatars img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            margin-left: -15px;
+        }
+        .avatars img:first-child {
+            margin-left: 0;
+        }
+        .stat-text h4 {
+            font-size: 1.1rem;
+        }
+        .stat-text p {
+            font-size: 0.8rem;
+            color: #d1deda;
+        }
+        .stars {
+            color: #f5b301;
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 2;
+            perspective: 1000px; /* For 3D effect */
+        }
+        .hero-image-wrapper {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transition: transform 0.1s;
+            transform-style: preserve-3d;
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Floating elements for 3D depth */
+        .float-bubble {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            z-index: 1;
+            animation: float 6s infinite ease-in-out alternate;
+        }
+        .bubble-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            right: 40%;
+        }
+        .bubble-2 {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Trusted By Section */
+        .trusted-by {
+            text-align: center;
+            padding: 2rem 5%;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        .companies {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .company {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #888;
+        }
+        .company i {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+
+        /* Services & About Section */
+        .services-section {
+            padding: 5rem 5%;
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+        .services-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            position: relative;
+        }
+        .img-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        .img-card:hover {
+            transform: translateZ(20px) scale(1.02);
+        }
+        .img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .img-card.large {
+            grid-column: 1 / 3;
+            height: 250px;
+        }
+        .services-content {
+            flex: 1;
+        }
+        .services-content h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .services-content p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        .features-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .features-list i {
+            color: var(--accent);
+        }
+
+        /* Generic Info Section */
+        .info-section {
+            background-color: var(--bg-light);
+            padding: 5rem 5%;
+            text-align: center;
+        }
+        .info-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .card-3d {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            text-align: left;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.1s ease;
+        }
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: #e8f7f3;
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            transform: translateZ(30px);
+        }
+        .card-3d h3 {
+            margin-bottom: 1rem;
+            transform: translateZ(20px);
+        }
+        .card-3d p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            transform: translateZ(10px);
+        }
+        
+        .footer {
+            background: var(--primary);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 3rem;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .hero-text {
+                margin: 0 auto 2rem;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-stats {
+                justify-content: center;
+                margin-bottom: 3rem;
+            }
+            .hero-image-wrapper {
+                width: 100%;
+                max-width: 400px;
+                height: 400px;
+            }
+            .services-section {
+                flex-direction: column-reverse;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="logo">
+            <i class="fa-solid fa-tooth"></i>
+            Smile Dental
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#dentists">Dentists</a></li>
+            <li><a href="#news">News</a></li>
+        </ul>
+        <a href="#contact" class="btn-contact">Contact us &nearr;</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="float-bubble bubble-1"></div>
+        <div class="float-bubble bubble-2"></div>
+        
+        <div class="hero-content fade-up">
+            <h1 class="hero-title">Smile Beyond Modern Dentistry <span>Reflection of</span> Confidence</h1>
+            <p class="hero-text">We believe a smile is more than just beauty - it represents health and self-confidence. That's why we focus on education, oral hygiene and long-lasting results.</p>
+            
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Get Started</a>
+                <a href="#" class="btn-secondary"><i class="fa-regular fa-circle-play"></i> Watch a Demo</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="avatars">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="user">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="user">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="user">
+                    </div>
+                    <div class="stat-text">
+                        <h4>12.5K+</h4>
+                        <p>Satisfied Patients</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-text">
+                        <h4>4.9 (12,202) Excellent</h4>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-image fade-up" style="transition-delay: 0.2s;">
+            <div class="hero-image-wrapper" id="hero-3d">
+                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dentist treating patient">
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By -->
+    <section class="trusted-by fade-up">
+        <p>Top companies trust us with their services</p>
+        <div class="companies">
+            <div class="company"><i class="fa-solid fa-sun"></i> SunFlare</div>
+            <div class="company"><i class="fa-solid fa-wave-square"></i> PulseWave</div>
+            <div class="company"><i class="fa-solid fa-paper-plane"></i> SkyGlide</div>
+            <div class="company"><i class="fa-solid fa-microchip"></i> TechNova</div>
+            <div class="company"><i class="fa-solid fa-globe"></i> HorizonTech</div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="services-images fade-up">
+            <div class="img-card large">
+                <img src="images/dental_xray.jpg" alt="Dental Care">
+            </div>
+            <div class="img-card">
+                <img src="images/dental_tools.jpg" alt="Dental Tools">
+            </div>
+            <div class="img-card">
+                <img src="images/dental_room.jpg" alt="Patient Smiling">
+            </div>
+        </div>
+        
+        <div class="services-content fade-up" style="transition-delay: 0.2s;">
+            <h2>Comprehensive Dental Services for Every Need</h2>
+            <p>Smile Dental Hospital & Implant Center is more than just a dental clinic - it is a place where healthy, confident, and radiant smiles are crafted with care, expertise, and precision. Designed with a modern approach to dentistry, our clinic combines advanced technology, gentle techniques, and personalized treatment plans.</p>
+            
+            <ul class="features-list">
+                <li><i class="fa-solid fa-circle-check" style="margin-top: 5px;"></i> <span>Cosmetic dentistry, orthodontics and oral surgery.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="margin-top: 5px;"></i> <span>Skilled dentists and specialists for personalized care.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="margin-top: 5px;"></i> <span>Modern equipment and minimally invasive methods.</span></li>
+            </ul>
+
+            <a href="#contact" class="btn-primary">Learn More &nearr;</a>
+        </div>
+    </section>
+
+    <!-- Dentists Section -->
+    <section id="dentists" class="info-section">
+        <h2 class="fade-up">Meet Our Expert Dentists</h2>
+        <div class="grid-3">
+            <div class="card-3d fade-up tilt-card" style="text-align: center;">
+                <img src="images/dr_sarah_jenkins.jpg" alt="Dr. Sarah Jenkins" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; border: 4px solid var(--accent); transform: translateZ(30px);">
+                <h3 style="transform: translateZ(20px);">Dr. Sarah Jenkins</h3>
+                <p style="transform: translateZ(10px);">Lead Orthodontist<br>15+ years of experience in smile design.</p>
+            </div>
+            <div class="card-3d fade-up tilt-card" style="text-align: center; transition-delay: 0.1s;">
+                <img src="images/dr_mark_smith.jpg" alt="Dr. Mark Smith" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; border: 4px solid var(--accent); transform: translateZ(30px);">
+                <h3 style="transform: translateZ(20px);">Dr. Mark Smith</h3>
+                <p style="transform: translateZ(10px);">Implant Specialist<br>Expert in full mouth rehab and extraction.</p>
+            </div>
+            <div class="card-3d fade-up tilt-card" style="text-align: center; transition-delay: 0.2s;">
+                <img src="images/dr_emily_chen.jpg" alt="Dr. Emily Chen" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; border: 4px solid var(--accent); transform: translateZ(30px);">
+                <h3 style="transform: translateZ(20px);">Dr. Emily Chen</h3>
+                <p style="transform: translateZ(10px);">Cosmetic Dentist<br>Passionate about creating perfect smiles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="services-section" style="background-color: var(--bg-white);">
+        <div class="services-content fade-up">
+            <h2>Latest News & Articles</h2>
+            <p>Stay updated with our latest clinic news, dental hygiene tips, and announcements about new services.</p>
+            <ul class="features-list">
+                <li><i class="fa-regular fa-newspaper" style="margin-top: 5px;"></i> <span><strong>New 3D Scanning Tech:</strong> We recently upgraded our equipment for painless and quick mouth scanning.</span></li>
+                <li><i class="fa-regular fa-newspaper" style="margin-top: 5px;"></i> <span><strong>Free Consultation Month:</strong> Join us this month for a free initial checkup and X-ray.</span></li>
+                <li><i class="fa-regular fa-newspaper" style="margin-top: 5px;"></i> <span><strong>Tips for Kids:</strong> How to make brushing fun for your toddlers and ensure healthy teeth.</span></li>
+            </ul>
+        </div>
+        <div class="services-images fade-up" style="transition-delay: 0.2s;">
+            <div class="img-card large">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Dental Tech News">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="info-section" style="background-color: var(--bg-light);">
+        <h2 class="fade-up">Contact Us & Reviews</h2>
+        <div class="grid-3" style="grid-template-columns: 1fr 1fr;">
+            
+            <!-- Contact Info & Form -->
+            <div class="card-3d fade-up tilt-card" style="text-align: left;">
+                <h3>Get in Touch</h3>
+                <p style="margin-bottom: 2rem;">Ready to book an appointment? Fill out the form or reach us via phone.</p>
+                
+                <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-location-dot" style="color: var(--accent); font-size: 1.2rem; margin-top: 4px;"></i>
+                    <p style="color: var(--text-dark); margin:0;"><strong>Address:</strong><br>Seshayya Metta, behind the Gandhi Statue, Aryapuram, Rajahmundry.</p>
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem;">
+                    <i class="fa-solid fa-phone" style="color: var(--accent); font-size: 1.2rem;"></i>
+                    <p style="color: var(--text-dark); margin:0;"><strong>Phone:</strong> +91 91772 88490</p>
+                </div>
+                
+                <form style="display: flex; flex-direction: column; gap: 1rem; transform: translateZ(10px);">
+                    <input type="text" placeholder="Your Name" style="padding: 1rem; border-radius: 10px; border: 1px solid #ddd; font-family: var(--font-main);">
+                    <input type="email" placeholder="Your Email" style="padding: 1rem; border-radius: 10px; border: 1px solid #ddd; font-family: var(--font-main);">
+                    <button type="button" class="btn-primary" style="align-self: flex-start;">Send Request</button>
+                </form>
+            </div>
+
+            <!-- Patient Reviews -->
+            <div class="card-3d fade-up tilt-card" style="text-align: left; background-color: var(--primary); color: var(--text-light);">
+                <div class="card-icon" style="background-color: rgba(255,255,255,0.1); color: var(--accent);"><i class="fa-solid fa-quote-left"></i></div>
+                <h3 style="color: white;">Patient Reviews</h3>
+                <p style="color: #d1deda;">"Best implant center in the area. The doctors are highly professional and the extraction was completely painless. Highly recommend Smile Dental Hospital!"</p>
+                <div class="stars" style="margin-top: 15px; margin-bottom: 2rem;">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+
+                <p style="color: #d1deda;">"The cosmetic dentistry here changed my life. Dr. Emily is truly passionate and the new 3D scanning tech they have is amazing and fast."</p>
+                <div class="stars" style="margin-top: 15px;">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Smile Dental Hospital & Implant Center. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts for 3D Animations and Scroll Effects -->
+    <script>
+        // Intersection Observer for scroll fade-up animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 3D Tilt effect for Hero Image
+        const heroWrapper = document.getElementById('hero-3d');
+        document.addEventListener('mousemove', (e) => {
+            // Only apply if in view roughly
+            if(window.scrollY > 600) return;
+            
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            
+            if(heroWrapper) {
+                heroWrapper.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+
+        // 3D Tilt effect for Cards
+        const cards = document.querySelectorAll('.tilt-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
+        });
+    </script>
+</body>
+</html>
